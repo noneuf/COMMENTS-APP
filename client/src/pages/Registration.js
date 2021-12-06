@@ -2,8 +2,10 @@ import React from 'react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 function Registration() {
+  let history = useHistory();
   const initialValues = {
     password: '',
     username: '',
@@ -15,6 +17,8 @@ function Registration() {
   const onSubmit = (data) => {
     axios.post('http://localhost:3001/auth', data).then(() => {
       console.log(data);
+      alert(`Welcome ${data.username}`);
+      history.push('/');
     });
   };
 
